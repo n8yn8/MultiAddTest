@@ -62,10 +62,17 @@
 
 - (IBAction)dismiss:(id)sender {
     
+    NSLog(@"In Page View %@",_inHeritedUrls);
+    if([_myDelegate respondsToSelector:@selector(pageViewDismissed:dismissedIndex:)])
+    {
+        [_inHeritedUrls removeObjectAtIndex:_pageIndex];
+        [_myDelegate pageViewDismissed:_inHeritedUrls dismissedIndex:_pageIndex];
+    }
+    /*
     UIPageViewController *parent = (UIPageViewController*)[self parentViewController];
     ViewController *superParent = (ViewController *)[parent parentViewController];
     [[superParent urls] removeObjectAtIndex:_pageIndex];
-    
+    */
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];

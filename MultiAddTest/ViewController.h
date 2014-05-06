@@ -10,7 +10,7 @@
 #import "PageContentViewController.h"
 #import "ELCImagePickerController.h"
 
-@interface ViewController : UIViewController <UIPageViewControllerDataSource, ELCImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ViewController : UIViewController <UIPageViewControllerDataSource, ELCImagePickerControllerDelegate, UINavigationControllerDelegate, SecondDelegate>
 
 - (IBAction)startWalkthrough:(id)sender;
 @property (strong, nonatomic) UIPageViewController *pageViewController;

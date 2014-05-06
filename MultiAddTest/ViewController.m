@@ -67,11 +67,6 @@
 	elcPicker.imagePickerDelegate = self;
     
     [self presentViewController:elcPicker animated:YES completion:nil];
-    
-    /*
-    PageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];*/
 }
 
 #pragma mark - Page View Controller Data Source
@@ -113,8 +108,21 @@
     PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
     pageContentViewController.imageFile = self.urls[index];
     pageContentViewController.pageIndex = index;
-    NSLog(@"%lu", (unsigned long)index);
+    pageContentViewController.myDelegate = self;
+    pageContentViewController.inHeritedUrls = _urls;
+    //NSLog(@"%lu", (unsigned long)index);
     return pageContentViewController;
+}
+
+- (void)pageViewDismissed:(NSMutableArray *)urlsFromPage dismissedIndex:(NSUInteger)dismissedIndex
+{
+    self.urls = urlsFromPage;
+    if (_urls.count > 0) {
+        [self pageView];
+    } else {
+        //remove page controller
+    }
+    
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
