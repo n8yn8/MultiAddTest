@@ -113,7 +113,7 @@
     PageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageContentViewController"];
     pageContentViewController.imageFile = self.urls[index];
     pageContentViewController.pageIndex = index;
-    
+    NSLog(@"%lu", (unsigned long)index);
     return pageContentViewController;
 }
 

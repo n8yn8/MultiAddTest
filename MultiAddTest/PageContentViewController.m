@@ -62,10 +62,9 @@
 
 - (IBAction)dismiss:(id)sender {
     
-    ViewController *parent = (ViewController*)[self parentViewController];
-    NSMutableArray *urls = parent.urls;
-    NSLog(@"%@", urls.description);
-    //[urls removeObjectAtIndex:_pageIndex];
+    UIPageViewController *parent = (UIPageViewController*)[self parentViewController];
+    ViewController *superParent = (ViewController *)[parent parentViewController];
+    [[superParent urls] removeObjectAtIndex:_pageIndex];
     
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
